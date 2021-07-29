@@ -1,4 +1,4 @@
-package TourGuide.msgps;
+package com.msgps.msgps;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

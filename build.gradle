@@ -1,72 +1,27 @@
-buildscript {
-	repositories {
-		mavenCentral()
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:2.1.6.RELEASE")
-	}
+plugins {
+	id 'org.springframework.boot' version '2.5.3'
+	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+	id 'java'
 }
 
-apply plugin: 'java'
-apply plugin: 'eclipse'
-apply plugin: 'idea'
-apply plugin: 'org.springframework.boot'
-apply plugin: 'io.spring.dependency-management'
-apply plugin: "jacoco"
-
-
-bootJar {
-	baseName = 'ms-gps'
-	version =  '1.0.0'
-}
+group = 'com.ms-gps'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '16'
 
 repositories {
 	mavenCentral()
-	flatDir {
-		dirs 'libs'
-	}
 }
-
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter-web")
-	implementation("org.springframework.boot:spring-boot-starter-actuator")
+	implementation 'org.springframework.boot:spring-boot-starter'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation'org.springframework.boot:spring-boot-starter-actuator'
+	implementation group: 'com.jsoniter', name: 'jsoniter', version: '0.9.23'
+	implementation files('gpsUtil.jar', 'libs/gpsUtil.jar')
 
-
-	implementation(name:'gpsUtil', ext:'jar')
-
-
-
-	testImplementation("junit:junit")
-	testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: '2.1.6.RELEASE'
 }
 
-
-jacoco {
-	toolVersion = "0.8.4"
-}
-
-jacocoTestReport {
-	reports {
-		xml.enabled true
-		csv.enabled false
-		html.destination file("${buildDir}/jacocoHtml")
-	}
-}
-
-test.finalizedBy jacocoTestReport
-check.dependsOn jacocoTestCoverageVerification
-
-jacocoTestCoverageVerification {
-	violationRules {
-		rule {
-			limit {
-				counter = 'LINE'
-				value = 'COVEREDRATIO'
-				minimum = 0.5
-			}
-		}
-	}
+test {
+	useJUnitPlatform()
 }
