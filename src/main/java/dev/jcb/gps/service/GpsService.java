@@ -5,9 +5,10 @@ import gpsUtil.location.VisitedLocation;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import java.util.UUID;
-@Configuration
+@Service
 public class GpsService {
 
     private final GpsUtil gpsUtil;
@@ -15,7 +16,7 @@ public class GpsService {
     public GpsService(GpsUtil gpsUtil) {
         this.gpsUtil = gpsUtil;
     }
-    @Bean
+
 public VisitedLocation getUserLocation (UUID id){
 
         return gpsUtil.getUserLocation(id);
