@@ -5,6 +5,7 @@ import dev.jcb.gps.service.GpsService;
 import gpsUtil.GpsUtil;
 import gpsUtil.location.VisitedLocation;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -24,4 +25,9 @@ public class GpsUtilController {
             VisitedLocation visitedLocation = gpsService.getUserLocation(UUID.fromString(id));
             return JsonStream.serialize(visitedLocation.location);
         }
+
+    @GetMapping("/getAttractions")
+    public String getAttractions() {
+        return JsonStream.serialize(gpsService.getAttractions());
+    }
 }
