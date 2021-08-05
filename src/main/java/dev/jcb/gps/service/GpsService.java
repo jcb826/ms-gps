@@ -23,6 +23,8 @@ public VisitedLocation getUserLocation (UUID id){
 
         return gpsUtil.getUserLocation(id);
 }
+
+
     public List<Attraction> getAttractions (){
 
         return gpsUtil.getAttractions();
