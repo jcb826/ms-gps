@@ -8,6 +8,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 @Service
@@ -28,6 +29,18 @@ public VisitedLocation getUserLocation (UUID id){
     public List<Attraction> getAttractions (){
 
         return gpsUtil.getAttractions();
+    }
+    // gps
+    public List<Attraction> getNearByAttractions(VisitedLocation visitedLocation) {
+        List<Attraction> nearbyAttractions = new ArrayList<>();
+        for(Attraction attraction : gpsUtil.getAttractions()) {
+            // gerer la connection à ms-reward
+            if(rewardsService.isWithinAttractionProximity(attraction, visitedLocation.location)) {
+                nearbyAttractions.add(attraction);
+            }
+        }
+
+        return nearbyAttractions;
     }
 
 
