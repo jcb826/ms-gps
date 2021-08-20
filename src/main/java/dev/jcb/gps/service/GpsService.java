@@ -1,11 +1,9 @@
 package dev.jcb.gps.service;
 
+import dev.jcb.gps.consumer.RewardGateway;
 import gpsUtil.GpsUtil;
 import gpsUtil.location.Attraction;
 import gpsUtil.location.VisitedLocation;
-import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -15,9 +13,11 @@ import java.util.UUID;
 public class GpsService {
 
     private final GpsUtil gpsUtil;
+    private final RewardGateway rewardGateway;
 
-    public GpsService(GpsUtil gpsUtil) {
+    public GpsService(GpsUtil gpsUtil, RewardGateway rewardGateway) {
         this.gpsUtil = gpsUtil;
+        this.rewardGateway = rewardGateway;
     }
 
 public VisitedLocation getUserLocation (UUID id){
@@ -35,7 +35,7 @@ public VisitedLocation getUserLocation (UUID id){
         List<Attraction> nearbyAttractions = new ArrayList<>();
         for(Attraction attraction : gpsUtil.getAttractions()) {
             // gerer la connection à ms-reward
-            if(rewardsService.isWithinAttractionProximity(attraction, visitedLocation.location)) {
+            if(rewardGateway.isWithinAttractionProximity(attraction, visitedLocation.location).getBody()) {
                 nearbyAttractions.add(attraction);
             }
         }
