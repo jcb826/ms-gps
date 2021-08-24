@@ -8,11 +8,14 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.UUID;
+
 @Component
 public class RewardGateway {
 
-    private final RestTemplate restTemplate;
+    private  RestTemplate restTemplate;
 
+    public RewardGateway() {
+    }
 
     public RewardGateway(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -20,7 +23,6 @@ public class RewardGateway {
 
 
     public ResponseEntity<Boolean> isWithinAttractionProximity(Attraction attraction, Location location) {
-
-        return restTemplate.getForEntity("localhost:8092/gps/",Boolean.class);
+        return restTemplate.getForEntity("localhost:8092/gps/", Boolean.class);
     }
 }
