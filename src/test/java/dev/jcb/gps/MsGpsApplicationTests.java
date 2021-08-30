@@ -1,4 +1,4 @@
-package com.msgps.msgps;
+package dev.jcb.gps;
 
 import dev.jcb.gps.consumer.RewardGateway;
 import dev.jcb.gps.service.GpsService;
@@ -15,7 +15,7 @@ import org.springframework.test.context.ContextConfiguration;
 import java.util.Locale;
 import java.util.UUID;
 
-@ContextConfiguration
+@SpringBootTest
 class MsGpsApplicationTests {
 
 
