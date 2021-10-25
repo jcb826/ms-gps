@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+
 @Service
 public class GpsService {
 
@@ -20,30 +21,27 @@ public class GpsService {
         this.rewardGateway = rewardGateway;
     }
 
-public VisitedLocation getUserLocation (UUID id){
+    public VisitedLocation getUserLocation(UUID id) {
 
         return gpsUtil.getUserLocation(id);
-}
+    }
 
 
-    public List<Attraction> getAttractions (){
+    public List<Attraction> getAttractions() {
 
         return gpsUtil.getAttractions();
     }
-    // gps
+
     public List<Attraction> getNearByAttractions(VisitedLocation visitedLocation) {
         List<Attraction> nearbyAttractions = new ArrayList<>();
-        for(Attraction attraction : gpsUtil.getAttractions()) {
-            // gerer la connection à ms-reward
-            if(rewardGateway.isWithinAttractionProximity(attraction, visitedLocation.location).getBody()) {
+        for (Attraction attraction : gpsUtil.getAttractions()) {
+            if (rewardGateway.isWithinAttractionProximity(attraction, visitedLocation.location).getBody()) {
                 nearbyAttractions.add(attraction);
             }
         }
 
         return nearbyAttractions;
     }
-
-
 
 
 }
