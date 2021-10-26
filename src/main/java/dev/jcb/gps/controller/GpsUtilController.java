@@ -31,4 +31,10 @@ public class GpsUtilController {
     public List<Attraction> getAttractions() {
         return (gpsService.getAttractions());
     }
+
+    @GetMapping("/visitedlocations/{id}")
+    public List<Attraction> getNearByAttractions(@PathVariable String id) {
+        VisitedLocation visitedLocation = gpsService.getUserLocation(UUID.fromString(id));
+        return (gpsService.getNearByAttractions(visitedLocation));
+    }
 }

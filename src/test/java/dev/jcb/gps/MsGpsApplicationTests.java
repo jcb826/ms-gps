@@ -29,4 +29,6 @@ class MsGpsApplicationTests {
         VisitedLocation visitedLocation = gpsService.getUserLocation(UUID.fromString("2ac2923d-31a8-4ca3-a9d6-117bc50d86ed"));
 
     }
+
+
 }
