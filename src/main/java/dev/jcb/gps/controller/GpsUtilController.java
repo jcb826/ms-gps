@@ -32,7 +32,7 @@ public class GpsUtilController {
         return (gpsService.getAttractions());
     }
 
-    @GetMapping("/visitedlocations/{id}")
+    @GetMapping("/getattractions/{id}")
     public List<Attraction> getNearByAttractions(@PathVariable String id) {
         VisitedLocation visitedLocation = gpsService.getUserLocation(UUID.fromString(id));
         return (gpsService.getNearByAttractions(visitedLocation));
