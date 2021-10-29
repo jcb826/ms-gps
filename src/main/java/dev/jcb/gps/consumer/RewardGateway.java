@@ -24,6 +24,6 @@ public class RewardGateway {
 
     public ResponseEntity<Boolean> isWithinAttractionProximity(Attraction attraction, Location location) {
 
-        return restTemplate.getForEntity("localhost:8092/gps/", Boolean.class);
+        return restTemplate.getForEntity("localhost:8092/reward/proximity", Boolean.class);
     }
 }
