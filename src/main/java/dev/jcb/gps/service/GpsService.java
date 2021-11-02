@@ -34,9 +34,17 @@ public class GpsService {
 
     public List<Attraction> getNearByAttractions(VisitedLocation visitedLocation) {
         List<Attraction> nearbyAttractions = new ArrayList<>();
+        int count = 0;
         for (Attraction attraction : gpsUtil.getAttractions()) {
+
             if (rewardGateway.isWithinAttractionProximity(attraction, visitedLocation.location).getBody()) {
                 nearbyAttractions.add(attraction);
+                count++;
+                if(count==5){
+                    break;
+                }
+
+
             }
         }
 

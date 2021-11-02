@@ -1,5 +1,6 @@
 package dev.jcb.gps.configuration;
 
+import dev.jcb.gps.service.GpsService;
 import gpsUtil.GpsUtil;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
